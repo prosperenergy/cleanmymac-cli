@@ -121,6 +121,7 @@ cleanmymac analyze ~/Projects
 | Command | Description |
 |---|---|
 | `clean` | Runs all clean categories at once: system junk, dev-tools junk, and trash |
+| `clean ai` | Scans for junk created by AI tools, shows what can be safely removed, and cleans it after your confirmation |
 | `clean dev` | Clears cached packages and build files left by developer tools: Homebrew, npm, Yarn, pnpm, pip, Cargo, Go, CocoaPods, Docker, VS Code, JetBrains, Maven, Gradle, Poetry, uv, Bun, Deno, and mise |
 | `clean junk` | Clears user logs, Xcode DerivedData, Device Support, Module Cache, Documentation Cache, and other Xcode-related junk |
 | `clean trash` | Empties the system trash and mounted-volume trash bins |
@@ -176,54 +177,57 @@ Run `cleanmymac` without a subcommand to open the main menu:
        /    └───   \    CleanMyMac CLI
       /             \   Clean and optimize your Mac safely from the terminal.
      └───────────────┘  v1.0.0 beta
-          ▒▒▒▒
-          ────
+           ▒▒▒▒
+           ────
 
-  ▸ Clean       Scan and review junk before removing it
-    Purge       Find removable artifacts across your projects
-    Analyze     Explore what is taking up disk space
-    Optimize    Free RAM and release purgeable disk space
-    Config      Manage CLI preferences
+          ▸ Clean       Scan and review junk before removing it
+            Purge       Find removable artifacts across your projects
+            Analyze     Explore what is taking up disk space
+            Optimize    Free RAM and release purgeable disk space
+            Config      Manage CLI preferences
 
 
-↑↓ Navigate  ·  Enter Confirm  ·  M More commands  ·  Q Quit
-beta · cleanmymac.com · lovingly crafted by MacPaw
+      ↑↓ Navigate  ·  Enter Confirm  ·  M More commands  ·  Q Quit
+      beta · cleanmymac.com · lovingly crafted by MacPaw
+      ```
+
 ```
-
 Prefer direct commands? Use any command without opening the menu:
 
-``` M
-
-cleanmymac clean                    Scan and review junk on your Mac
-cleanmymac clean junk               Scan and review system junk only
-cleanmymac clean dev                Scan and review developer-tool junk only
-cleanmymac clean trash              Scan and review items in Trash only
-  --force                           Skip confirmation and clean immediately
-
-cleanmymac purge                    Find project artifacts in common developer folders
-cleanmymac purge <path>             Scan a specific directory for project artifacts
-  --force                           Skip confirmation and clean immediately
-
-cleanmymac analyze                  Explore storage usage in your home directory
-cleanmymac analyze <path>           Explore storage usage inside a specific directory
-
-cleanmymac optimize                 Free RAM and release purgeable disk space
-cleanmymac optimize ram             Release inactive memory
-cleanmymac optimize purgeable       Release purgeable disk space
-
-cleanmymac config                   Manage CLI preferences
-
-cleanmymac ignore list              Show ignored paths
-cleanmymac ignore add <path>        Add a path to the ignore list
-cleanmymac ignore remove <path>     Remove a path from the ignore list
-
-cleanmymac --help                   Show all commands and options
-cleanmymac --version                Show the installed version
-
-cleanmymac cat                      Summon a friend
-
-Esc Back to menu  ·  Q Quit
-beta · cleanmymac.com · lovingly crafted by MacPaw
+```
+        M
+        
+        cleanmymac clean                    Scan and review junk on your Mac
+        cleanmymac clean junk               Scan and review system junk only
+        cleanmymac clean dev                Scan and review developer-tool junk only
+        cleanmymac clean ai                 Scan and review ai-tool junk only
+        cleanmymac clean trash              Scan and review items in Trash only
+          --force                           Skip confirmation and clean immediately
+        
+        cleanmymac purge                    Find project artifacts in common developer folders
+        cleanmymac purge <path>             Scan a specific directory for project artifacts
+          --force                           Skip confirmation and clean immediately
+        
+        cleanmymac analyze                  Explore storage usage in your home directory
+        cleanmymac analyze <path>           Explore storage usage inside a specific directory
+        
+        cleanmymac optimize                 Free RAM and release purgeable disk space
+        cleanmymac optimize ram             Release inactive memory
+        cleanmymac optimize purgeable       Release purgeable disk space
+        
+        cleanmymac config                   Manage CLI preferences
+        
+        cleanmymac ignore list              Show ignored paths
+        cleanmymac ignore add <path>        Add a path to the ignore list
+        cleanmymac ignore remove <path>     Remove a path from the ignore list
+        
+        cleanmymac --help                   Show all commands and options
+        cleanmymac --version                Show the installed version
+        
+        cleanmymac cat                      Summon a friend
+        
+        Esc Back to menu  ·  Q Quit
+        beta · cleanmymac.com · lovingly crafted by MacPaw
 ```
 
 > ⚠️ The `--force` flag skips interactive confirmation for supported cleanup commands. Use it only after reviewing what the command detects without the flag.
@@ -235,24 +239,24 @@ Use `clean` for leftovers created outside individual project folders: package-ma
 CleanMyMac CLI scans first and groups the results by category:
 
 ```text
-$ cleanmymac clean
-
-← Back to menu
-23.79 GB of items found
-
-Scan results
-Select items you'd like to remove
-
-▸ ■ System Junk       631 KB  →
-  ■ Dev Tools        23.43 GB →
-  □ AI Junk          358.7 MB →
-
-40 items selected (23.43 GB)
-
-↑↓←→ Navigate  ·  Enter Confirm  ·  Space Toggle  ·  A Select all
-Esc Back to menu  ·  Q Quit
-
-beta · cleanmymac.com · lovingly crafted by MacPaw
+          $ cleanmymac clean
+          
+          ← Back to menu
+          23.79 GB of items found
+          
+          Scan results
+          Select items you'd like to remove
+          
+          ▸ ■ System Junk       631 KB  →
+            ■ Dev Tools        23.43 GB →
+            □ AI Junk          358.7 MB →
+          
+          40 items selected (23.43 GB)
+          
+          ↑↓←→ Navigate  ·  Enter Confirm  ·  Space Toggle  ·  A Select all
+          Esc Back to menu  ·  Q Quit
+          
+          beta · cleanmymac.com · lovingly crafted by MacPaw
 ```
 
 Press `→` to open a category and inspect its contents. Use `Space` to select or deselect individual items.
@@ -262,51 +266,51 @@ Nothing is removed until you review the selection and confirm the cleanup.
 After cleanup, CleanMyMac CLI shows exactly what was removed and how much space was recovered:
 
 ```
-Cleanup complete!
-
-Dev Tools
-    ✓ Homebrew       6.61 GB
-    ✓ npm            5.03 GB
-    ✓ Yarn           3.3 GB
-    ✓ pnpm           4.72 GB
-    ✓ pip            3.77 GB
-
-AI Junk
-    ✓ Claude       358.7 MB
-
-
-────────────────────────────────────────────────────────────
-
-      __________
-     / 23.79 GB \
-    /   cleaned! \
-   └─────────────┘
-        ▒▒▒▒
-        ────
-
-45 items removed
-
-Run cleanmymac ignore add <path> to protect a path
-Run cleanmymac clean --force to clean without confirmation
-
-────────────────────────────────────────────────────────────
-
-Esc Back to menu  ·  Q Quit
-beta · cleanmymac.com · lovingly crafted by MacPaw
+          Cleanup complete!
+          
+          Dev Tools
+              ✓ Homebrew       6.61 GB
+              ✓ npm            5.03 GB
+              ✓ Yarn           3.3 GB
+              ✓ pnpm           4.72 GB
+              ✓ pip            3.77 GB
+          
+          AI Junk
+              ✓ Claude       358.7 MB
+          
+          
+          ────────────────────────────────────────────────────────────
+          
+                ____________
+               /  23.79 GB  \
+              /   cleaned!   \
+             └────────────────┘
+                    ▒▒▒▒
+                    ────
+          
+          45 items removed
+          
+          Run cleanmymac ignore add <path> to protect a path
+          Run cleanmymac clean --force to clean without confirmation
+          
+          ────────────────────────────────────────────────────────────
+          
+          Esc Back to menu  ·  Q Quit
+          beta · cleanmymac.com · lovingly crafted by MacPaw
 ```
 
 Run all cleanup categories together:
 
 ```bash
-cleanmymac clean
+          cleanmymac clean
 ```
 
 Or scan only one category:
 
 ```bash
-cleanmymac clean junk
-cleanmymac clean dev
-cleanmymac clean trash
+          cleanmymac clean junk
+          cleanmymac clean dev
+          cleanmymac clean trash
 ```
 
 > [!TIP] Use `clean` for shared caches and tool-generated junk. Use `purge` for removable dependencies and build artifacts stored inside your project folders.
@@ -317,33 +321,33 @@ Use `purge` to find generated files that accumulate inside development projects,
 
 By default, it scans common project locations:
 
-- `~/Projects`
-- `~/Code`
-- `~/dev`
-- `~/GitHub`
-- `~/Workspace`
+        - `~/Projects`
+        - `~/Code`
+        - `~/dev`
+        - `~/GitHub`
+        - `~/Workspace`
 
 Results are grouped by project so you can understand what each artifact belongs to before removing it:
 
 ```text
-$ cleanmymac purge
-
-Scanning ~/Projects, ~/Code, ~/dev, ~/GitHub, ~/Workspace…
-
-Found 18.5 GB across 8 projects
-
-  ☑ my-react-app      3.2 GB   node_modules
-  ☑ rust-service      4.1 GB   target
-  ☑ django-api        2.3 GB   .venv
-  ☑ next-blog         1.9 GB   node_modules
-  ☐ current-work      856 MB   node_modules   recent
-
-Artifacts newer than 7 days are shown but left unchecked.
-
-↑↓ Navigate  ·  Enter Confirm  ·  Space Toggle  ·  A Select all
-Esc Back to menu  ·  Q Quit
-
-beta · cleanmymac.com · lovingly crafted by MacPaw
+          $ cleanmymac purge
+          
+          Scanning ~/Projects, ~/Code, ~/dev, ~/GitHub, ~/Workspace…
+          
+          Found 18.5 GB across 8 projects
+          
+            ☑ my-react-app      3.2 GB   node_modules
+            ☑ rust-service      4.1 GB   target
+            ☑ django-api        2.3 GB   .venv
+            ☑ next-blog         1.9 GB   node_modules
+            ☐ current-work      856 MB   node_modules   recent
+          
+          Artifacts newer than 7 days are shown but left unchecked.
+          
+          ↑↓ Navigate  ·  Enter Confirm  ·  Space Toggle  ·  A Select all
+          Esc Back to menu  ·  Q Quit
+          
+          beta · cleanmymac.com · lovingly crafted by MacPaw
 ```
 
 Artifacts older than seven days are preselected. More recent artifacts remain visible but unchecked, reducing the risk of removing files from active projects.
@@ -351,13 +355,13 @@ Artifacts older than seven days are preselected. More recent artifacts remain vi
 Scan the default project folders:
 
 ```bash
-cleanmymac purge
+          cleanmymac purge
 ```
 
 Or provide a specific directory:
 
 ```bash
-cleanmymac purge ~/Work/client-project
+          cleanmymac purge ~/Work/client-project
 ```
 
 > [!NOTE] `purge` removes generated artifacts, not project source code. Review every selected path before confirming, especially when scanning custom directories.
@@ -369,25 +373,25 @@ Use `analyze` when you want to understand where your storage has gone before dec
 It opens an interactive explorer that sorts directories by size and lets you navigate deeper into the file system:
 
 ```text
-$ cleanmymac analyze
-
-252.66 GB of 494.38 GB free
-
-▸ □ Users          109.08 GB │ 60.3%  ████████████████████░░░░░░░░░░░  →
-  □ Library         26.36 GB │ 14.6%  █████░░░░░░░░░░░░░░░░░░░░░░░░░░  →
-  □ System          20.36 GB │ 11.3%  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
-  □ Applications    17.35 GB │  9.6%  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
-  □ private          6.57 GB │  3.6%  █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
-  □ usr              1.05 GB │  0.6%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
-  □ opt             200.1 MB │  0.1%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
-  □ bin               4.9 MB │  0.0%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
-  □ sbin              2.5 MB │  0.0%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
-  □ Other (10 items) Zero KB │  0.0%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
-
-↑↓←→ Navigate  ·  ⌫ Delete  ·  Space Toggle  ·  A Select all
-O Reveal in Finder  ·  Esc Back to menu  ·  Q Quit
-
-beta · cleanmymac.com · lovingly crafted by MacPaw
+          $ cleanmymac analyze
+          
+          252.66 GB of 494.38 GB free
+          
+          ▸ □ Users          109.08 GB │ 60.3%  ████████████████████░░░░░░░░░░░  →
+            □ Library         26.36 GB │ 14.6%  █████░░░░░░░░░░░░░░░░░░░░░░░░░░  →
+            □ System          20.36 GB │ 11.3%  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
+            □ Applications    17.35 GB │  9.6%  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
+            □ private          6.57 GB │  3.6%  █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
+            □ usr              1.05 GB │  0.6%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
+            □ opt             200.1 MB │  0.1%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
+            □ bin               4.9 MB │  0.0%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
+            □ sbin              2.5 MB │  0.0%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
+            □ Other (10 items) Zero KB │  0.0%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  →
+          
+          ↑↓←→ Navigate  ·  ⌫ Delete  ·  Space Toggle  ·  A Select all
+          O Reveal in Finder  ·  Esc Back to menu  ·  Q Quit
+          
+          beta · cleanmymac.com · lovingly crafted by MacPaw
 ```
 
 Use the arrow keys to navigate through folders, or press `O` to reveal the selected item in Finder.
@@ -397,13 +401,13 @@ Removing an item requires an explicit selection and confirmation. Simply browsin
 Analyze your home directory:
 
 ```bash
-cleanmymac analyze
+          cleanmymac analyze
 ```
 
 Or start from a specific path:
 
 ```bash
-cleanmymac analyze ~/Projects
+          cleanmymac analyze ~/Projects
 ```
 
 > [!TIP] Start with `cleanmymac analyze` when you know your disk is full but are not yet sure what is safe or useful to remove.
@@ -415,14 +419,14 @@ Use `optimize` for lightweight maintenance tasks that do not scan project files 
 Run all available optimization tasks:
 
 ```bash
-cleanmymac optimize
+          cleanmymac optimize
 ```
 
 Or run them separately:
 
 ```bash
-cleanmymac optimize ram
-cleanmymac optimize purgeable
+          cleanmymac optimize ram
+          cleanmymac optimize purgeable
 ```
 
 - `optimize ram` releases inactive memory that macOS can make available to running applications.
@@ -435,19 +439,19 @@ These commands do not remove project source code or personal documents.
 Add folders to the ignore list when they should never appear in CleanMyMac CLI scan results:
 
 ```bash
-cleanmymac ignore add ~/Projects/important-project
+          cleanmymac ignore add ~/Projects/important-project
 ```
 
 Review all ignored paths:
 
 ```bash
-cleanmymac ignore list
+          cleanmymac ignore list
 ```
 
 Remove a path when you want it to appear in scans again:
 
 ```bash
-cleanmymac ignore remove ~/Projects/important-project
+          cleanmymac ignore remove ~/Projects/important-project
 ```
 
 Ignored paths remain excluded until you remove them from the list.
@@ -457,7 +461,7 @@ Ignored paths remain excluded until you remove them from the list.
 Open the configuration menu to manage CLI preferences, including analytics and cleanup behavior:
 
 ```bash
-cleanmymac config
+          cleanmymac config
 ```
 
 Configuration changes persist between sessions.
@@ -467,7 +471,7 @@ Configuration changes persist between sessions.
 Some maintenance tasks are better with company:
 
 ```bash
-cleanmymac cat
+          cleanmymac cat
 ```
 
 ## Beta
