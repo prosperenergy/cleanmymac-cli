@@ -1,3 +1,4 @@
+
 <div align="center">
 
 # CleanMyMac CLI
@@ -39,8 +40,9 @@
 - macOS 11 or later
 - [Homebrew](https://brew.sh)
 
+
 ## Installation
-> The formula lives in our tap — [MacPaw/homebrew-taps](https://github.com/MacPaw/homebrew-taps).
+> The formula lives in our tap — [MacPaw/homebrew-taps](https://github.com/MacPaw/homebrew-taps)
 
 
 Install it with Homebrew:
@@ -48,6 +50,8 @@ Install it with Homebrew:
 ```bash
 brew install --cask macpaw/taps/cleanmymac-cli
 ```
+
+>  Manual download: Prefer to install without Homebrew? Download the latest build directly: [CleanMyMac-CLI-1.0.0.zip](https://cli.cleanmymac.com/1.0.0/CleanMyMac-CLI-1.0.0.zip)
 
 Verify that the installation was successful:
 
@@ -66,6 +70,7 @@ View menu:
 ```bash
 cleanmymac
 ```
+
 
 ## Quick Start
 
