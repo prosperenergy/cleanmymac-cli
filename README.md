@@ -238,10 +238,21 @@ Learn more: [Safety and Privacy](https://github.com/MacPaw/cleanmymac-cli/wiki/S
 
 For detailed examples, see the [Commands documentation](https://github.com/MacPaw/cleanmymac-cli/wiki/Commands).
 
+## Guides
+
+Solve common developer storage problems with practical step-by-step guides:
+
+- [Clean Xcode Cache and DerivedData from Terminal](https://github.com/MacPaw/cleanmymac-cli/wiki/Clean-Xcode-Cache-and-DerivedData-from-Terminal)
+- [Clean Developer Caches on macOS](https://github.com/MacPaw/cleanmymac-cli/wiki/Clean-Developer-Caches-on-macOS)
+- [Find and Remove Old node_modules on Mac](https://github.com/MacPaw/cleanmymac-cli/wiki/Find-and-Remove-Old-node_modules-on-Mac)
+- [Analyze Disk Usage on macOS from Terminal](https://github.com/MacPaw/cleanmymac-cli/wiki/Analyze-Disk-Usage-on-macOS-from-Terminal)
+- [Clean AI Tool Artifacts on macOS](https://github.com/MacPaw/cleanmymac-cli/wiki/Clean-AI-Tool-Artifacts-on-macOS)
+
+
 ---
 ---
 
-## How it works
+## How it works — in details
 
 A typical cleanup takes three steps:
 
