@@ -3,7 +3,7 @@
 
 # CleanMyMac CLI
 
-**Clean, analyze, and optimize your Mac from the terminal.**
+**Clean developer caches, project artifacts, and disk clutter. Analyze storage and reclaim space — without leaving the Terminal.**
 
 </div>
 
@@ -37,89 +37,184 @@
 
 ## Requirements
 
-- macOS 11 or later
-- [Homebrew](https://brew.sh)
-
+- macOS 11 or later, [Homebrew](https://brew.sh)
 
 ## Installation
 > The formula lives in our tap — [MacPaw/homebrew-taps](https://github.com/MacPaw/homebrew-taps)
 
+>  Manual download: Prefer to install without Homebrew? Download the latest build directly: [CleanMyMac-CLI-1.0.0.zip](https://cli.cleanmymac.com/1.0.0/CleanMyMac-CLI-1.0.0.zip)
 
-Install it with Homebrew:
+### The fastest way to install CleanMyMac CLI is with Homebrew:
 
 ```bash
 brew install --cask macpaw/taps/cleanmymac-cli
 ```
 
->  Manual download: Prefer to install without Homebrew? Download the latest build directly: [CleanMyMac-CLI-1.0.0.zip](https://cli.cleanmymac.com/1.0.0/CleanMyMac-CLI-1.0.0.zip)
-
-Verify that the installation was successful:
+Verify the installation:
 
 ```bash
 cleanmymac --version
 ```
 
-View all available commands and options:
-
-```bash
-cleanmymac --help
-```
-
-View menu:
+Then launch the interactive interface:
 
 ```bash
 cleanmymac
 ```
 
-
-## Quick Start
-
-> CleanMyMac CLI scans first and lets you review detected items before anything is removed.
-> Both `cmm` and `cleanmymac` run the same tool — this README uses the `cleanmymac` in examples.
-
-### Clean developer junk
-
-> Scan for developer caches, build leftovers, package-manager files, and other removable junk:
-
-```bash
-cleanmymac clean
-```
-
-Review the results and select what you want to remove.
-
-### Purge project artifacts
-
-> Find removable artifacts across your common project folders:
-
-```bash
-cleanmymac purge
-```
-
-You can also scan a specific directory:
-
-```bash
-cleanmymac purge ~/Projects
-```
-
-Artifacts are grouped by project so you can review them before cleanup.
-
-### Analyze disk usage
-
-> Open an interactive disk usage explorer:
+Or start by analyzing what is taking up space:
 
 ```bash
 cleanmymac analyze
 ```
 
-Or analyze a specific directory:
+! Both `cleanmymac` and `cmm` run the same tool.
+
+
+## Quick Start
+
+[Getting Started](https://github.com/MacPaw/cleanmymac-cli/wiki/Getting-Started) ·
+[Commands](https://github.com/MacPaw/cleanmymac-cli/wiki/Commands) ·
+[Safety & Privacy](https://github.com/MacPaw/cleanmymac-cli/wiki/Safety-and-Privacy) ·
+[FAQ](https://github.com/MacPaw/cleanmymac-cli/wiki/FAQ)
+
+---
+
+## What can CleanMyMac CLI do?
+
+### Clean developer caches and system junk
+
+Find removable files created by developer tools, package managers, Xcode, AI tools, and macOS:
+
+```bash
+cleanmymac clean
+```
+
+Scan a specific cleanup category:
+
+```bash
+cleanmymac clean dev
+cleanmymac clean junk
+cleanmymac clean ai
+cleanmymac clean trash
+```
+CleanMyMac CLI can detect caches and generated files from tools including: Homebrew, npm, Yarn, and pnpm, pip, Poetry, and uv, Xcode DerivedData, Device Support, Module Cache, and other Xcode-related files, supported AI-tool artifacts etc
+
+You review detected items before cleanup.
+
+---
+
+### Remove old project artifacts
+
+Development projects accumulate generated files that can take gigabytes of disk space: `node_modules`, `.next`, `.turbo`, `target`,  `.build` etc
+
+Find them across common project folders:
+
+```bash
+cleanmymac purge
+```
+
+Or scan a specific directory:
+
+```bash
+cleanmymac purge ~/Projects
+```
+Results are grouped by project so you know what each artifact belongs to.
+
+Artifacts older than seven days are preselected. Newer artifacts remain visible but unchecked for manual review.
+
+> [!TIP]
+> Use `clean` for shared caches and tool-generated junk.  
+> Use `purge` for removable dependencies and build artifacts stored inside project folders.
+
+---
+
+### Analyze disk usage from Terminal
+
+Not sure where your disk space went?
+
+Open the interactive storage analyzer:
+
+```bash
+cleanmymac analyze
+```
+
+Or start from a specific folder:
 
 ```bash
 cleanmymac analyze ~/Projects
 ```
 
-`analyze` is read-only and does not remove files.
+Navigate through directories by size, explore what is consuming storage, and reveal items in Finder.
 
-> 💡 Not sure where to begin? Start with `cleanmymac analyze` to understand what is consuming your storage.
+Browsing through the analyzer does not modify your files. Any removal action requires an explicit selection and confirmation.
+
+> [!TIP]
+> If your Mac is running out of storage and you are not sure what is safe to remove, start with `cleanmymac analyze`.
+
+---
+
+### Optimize your Mac
+
+Run lightweight maintenance tasks directly from Terminal:
+
+```bash
+cleanmymac optimize
+```
+
+Or run them separately:
+
+```bash
+cleanmymac optimize ram
+cleanmymac optimize purgeable
+```
+
+- `optimize ram` releases inactive memory
+- `optimize purgeable` asks macOS to release disk space already marked as purgeable
+
+These commands do not remove project source code or personal documents.
+
+---
+
+## Preview first. Delete only what you approve.
+
+CleanMyMac CLI is designed around transparency and control.
+
+Before cleanup, you can inspect what was detected and decide what should be removed.
+
+Safety features include:
+
+- **Interactive review** before cleanup
+- **Protected system locations** excluded from cleanup
+- **Project-aware purging** with age-based selection
+- **Ignore list** for files and folders you always want protected
+- **Explicit confirmation** before removal
+- Cleanup detection based on logic shared with CleanMyMac
+
+Protect a path permanently:
+
+```bash
+cleanmymac ignore add ~/Projects/important-project
+```
+
+View protected paths:
+
+```bash
+cleanmymac ignore list
+```
+
+Remove a path from the ignore list:
+
+```bash
+cleanmymac ignore remove ~/Projects/important-project
+```
+
+> [!WARNING]
+> `--force` skips interactive confirmation for supported cleanup commands and removes detected items immediately. Run the command without `--force` first and review what it finds.
+
+Learn more: [Safety and Privacy](https://github.com/MacPaw/cleanmymac-cli/wiki/Safety-and-Privacy)
+
+---
 
 ## Commands
 
@@ -141,41 +236,41 @@ cleanmymac analyze ~/Projects
 | `config` | Opens CLI settings, including the analytics toggle |
 | `ignore add <path>` | Adds a path to the ignore list so it never appears in `clean`, `purge`, or `analyze` results |
 
-</details>
-> Artifacts older than seven days are preselected. Newer artifacts remain visible but are left unchecked for manual review.
+For detailed examples, see the [Commands documentation](https://github.com/MacPaw/cleanmymac-cli/wiki/Commands).
 
-## Safety
+---
+---
 
-CleanMyMac CLI is designed to avoid destructive cleanup actions. By default, every command shows what it will remove and asks for confirmation before deleting. Safety features include:
+## How it works
 
-- Interactive review before deletion (clean, purge)
-- Protected system locations are excluded from cleanup.
-- An ignore list to permanently protect specific paths from `clean`, `purge`, and `analyze` (`cleanmymac ignore add <path>`)
-- During `purge`, only artifacts older than seven days are preselected.
-- `analyze` is read-only and never removes files.
-- Cleanup detection is based on logic shared with CleanMyMac.
+A typical cleanup takes three steps:
 
-Add a path to the ignore list:
+### 1. Scan
 
 ```bash
-cleanmymac ignore add ~/Projects/important-project
+cleanmymac clean/purge
 ```
 
-Review ignored paths:
+CleanMyMac CLI scans supported locations and groups what it finds.
+
+### 2. Review
+
+Inspect categories and paths, then select or deselect what you want to remove.
+
+### 3. Confirm
+
+After cleanup, CleanMyMac CLI shows what was removed and how much disk space was recovered.
+
+---
+
+## Interactive or direct — your choice
+
+Open the interactive interface or run exactly what you need. This makes CleanMyMac CLI useful both as an interactive cleanup tool and as part of command-line workflows.
+
 
 ```bash
-cleanmymac ignore list
+cleanmymac
 ```
-
-> ⚠️ The `--force` flag skips the confirmation prompt and deletes detected items immediately. Use it only when you understand exactly what the command will remove.
-
-
-
-## Features in Detail
-
-> CleanMyMac CLI can be used either through its interactive menu or by running commands directly.
-
-Run `cleanmymac` without a subcommand to open the main menu:
 
 ```text
         __________
@@ -197,7 +292,7 @@ Run `cleanmymac` without a subcommand to open the main menu:
       ```
 
 ```
-Prefer direct commands? Use any command without opening the menu:
+Run:
 
 ```
         M
@@ -234,8 +329,9 @@ Prefer direct commands? Use any command without opening the menu:
         Esc Back to menu  ·  Q Quit
         beta · cleanmymac.com · lovingly crafted by MacPaw
 ```
-
 > ⚠️ The `--force` flag skips interactive confirmation for supported cleanup commands. Use it only after reviewing what the command detects without the flag.
+
+---
 
 ### Clean developer, system, and AI junk
 
@@ -264,9 +360,7 @@ CleanMyMac CLI scans first and groups the results by category:
           beta · cleanmymac.com · lovingly crafted by MacPaw
 ```
 
-Press `→` to open a category and inspect its contents. Use `Space` to select or deselect individual items.
-
-Nothing is removed until you review the selection and confirm the cleanup.
+Press `→` to open a category and inspect its contents. Use `Space` to select or deselect individual items. Nothing is removed until you review the selection and confirm the cleanup.
 
 After cleanup, CleanMyMac CLI shows exactly what was removed and how much space was recovered:
 
@@ -320,6 +414,8 @@ Or scan only one category:
 
 > [!TIP] Use `clean` for shared caches and tool-generated junk. Use `purge` for removable dependencies and build artifacts stored inside your project folders.
 
+---
+
 ### Purge project artifacts
 
 Use `purge` to find generated files that accumulate inside development projects, such as `node_modules`, build directories, virtual environments, and compiled dependencies.
@@ -370,6 +466,8 @@ Or provide a specific directory:
 ```
 
 > [!NOTE] `purge` removes generated artifacts, not project source code. Review every selected path before confirming, especially when scanning custom directories.
+
+---
 
 ### Analyze disk usage
 
@@ -461,6 +559,8 @@ Remove a path when you want it to appear in scans again:
 
 Ignored paths remain excluded until you remove them from the list.
 
+---
+
 ### Configure CleanMyMac CLI
 
 Open the configuration menu to manage CLI preferences, including analytics and cleanup behavior:
@@ -471,6 +571,8 @@ Open the configuration menu to manage CLI preferences, including analytics and c
 
 Configuration changes persist between sessions.
 
+---
+
 ### Summon a friend
 
 Some maintenance tasks are better with company:
@@ -479,23 +581,42 @@ Some maintenance tasks are better with company:
           cleanmymac cat
 ```
 
-## Beta
-
-CleanMyMac CLI is in public beta and not yet feature-complete — expect commands and behavior to evolve.
+---
 
 
-## Prefer a visual interface?
 
-[CleanMyMac Desktop](https://cleanmymac.com) provides broader whole-Mac cleanup, application management, malware protection, and performance tools through a visual review interface.
+## Documentation
 
-CleanMyMac CLI is focused on terminal-first developer cleanup and is not intended to replace the desktop app.
+New to CleanMyMac CLI? [Wiki](https://github.com/MacPaw/cleanmymac-cli/wiki/Getting-Started)
+
+## Built for real developer workflows
+
+CleanMyMac CLI was built around the workflows our own developers face every day. The CleanMyMac team uses it on our own Macs to clean development artifacts, inspect storage, and keep working environments under control.
+
+> 🩷 **We use the same commands we ship to you.**
+
 
 ## Feedback & Support
+
+> CleanMyMac CLI is in public beta and not yet feature-complete — expect commands and behavior to evolve.
 
 We'd love to hear from you. For bugs and feature requests, open an issue on the [issue tracker](https://github.com/macpaw/cleanmymac-cli/issues).
 
 For other questions, contact [MacPaw Support](https://support.macpaw.com).
 
+
+## Using CleanMyMac CLI?
+
+⭐ **Star this repository** to follow the Public Beta and help other developers discover the project.
+
+💬 [Join GitHub Discussions](https://github.com/MacPaw/cleanmymac-cli/discussions)
+
+📰 [Meet CleanMyMac CLI](https://macpaw.com/news/cleanmymac-cli)
+
+## Prefer a visual interface?
+
+[CleanMyMac Desktop](https://cleanmymac.com) provides broader whole-Mac cleanup, application management, malware protection, and performance tools through a visual review interface.
+CleanMyMac CLI focuses on terminal-first developer cleanup and is not intended to replace the desktop app.
 
 ## Security
 
