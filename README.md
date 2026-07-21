@@ -42,8 +42,6 @@
 ## Installation
 > The formula lives in our tap — [MacPaw/homebrew-taps](https://github.com/MacPaw/homebrew-taps)
 
->  Manual download: Prefer to install without Homebrew? Download the latest build directly: [CleanMyMac-CLI-1.0.0.zip](https://cli.cleanmymac.com/1.0.0/CleanMyMac-CLI-1.0.0.zip)
-
 ### The fastest way to install CleanMyMac CLI is with Homebrew:
 
 ```bash
