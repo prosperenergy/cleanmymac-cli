@@ -9,10 +9,12 @@
 
 <p align="center">
   <img
-    width="2172"
-    alt="CleanMyMac CLI showing cleanup, disk analysis, and optimization workflows"
-    src="https://github.com/user-attachments/assets/d31aa939-cd1e-419c-ba42-d92a49522104"
+    alt="CleanMyMac CLI showing cleanup, disk analysis, and optimization workflows" 
+    width="1920" 
+    height="1080" 
+    src="https://github.com/user-attachments/assets/446cb04e-c01a-4592-a09b-eebc3d54b95a" 
   />
+
 </p>
 <p align="center">
   <em>🩷 Built and used daily by the CleanMyMac team on our own Macs🩷</em>
