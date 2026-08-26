@@ -47,7 +47,7 @@
 ### The fastest way to install CleanMyMac CLI is with Homebrew:
 
 ```bash
-brew install --cask macpaw/taps/cleanmymac-cli
+brew install --cask cleanmymac-cli
 ```
 
 Verify the installation:
